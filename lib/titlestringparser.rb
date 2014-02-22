@@ -24,7 +24,7 @@ module TitlestringParser
     title.strip!
     clean_notes = []
 
-    filename = "#{artist.downcase}_#{title.gsub(' ', '-').downcase}"
+    filename = "#{artist.gsub(' ', '-').downcase}_#{title.gsub(' ', '-').downcase}"
 
     if notes
       notes.each do |note|
