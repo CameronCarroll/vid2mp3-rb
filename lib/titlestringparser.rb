@@ -34,7 +34,7 @@ module TitlestringParser
       end
     end
 
-    filename << ".mp3"
+    filename << extension
 
     if notes
       return {artist: artist, title: title, extension: extension, filename: filename, notes: clean_notes}

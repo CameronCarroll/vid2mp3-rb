@@ -16,7 +16,7 @@ describe TitlestringParser do
   describe "passing artist - title.extension" do
     it "should return artist and title and filetype" do
       title_string = "Koven - Make It There.mp4"
-      correct_response = {artist: "Koven", title: "Make It There", extension: ".mp4", filename: "koven_make-it-there.mp3"}
+      correct_response = {artist: "Koven", title: "Make It There", extension: ".mp4", filename: "koven_make-it-there.mp4"}
       TitlestringParser.parse(title_string).must_equal correct_response
     end
   end
@@ -24,7 +24,7 @@ describe TitlestringParser do
   describe "passing artist - title (note).extenion" do
     it "should return artist, title and the note and the filetype" do
       title_string = "Koven - Make It There (feat. Folly Rae).mp4"
-      correct_response = {artist: "Koven", title: "Make It There", notes: ["feat. Folly Rae"], extension: ".mp4", filename: "koven_make-it-there_feat-folly-rae.mp3"}
+      correct_response = {artist: "Koven", title: "Make It There", notes: ["feat. Folly Rae"], extension: ".mp4", filename: "koven_make-it-there_feat-folly-rae.mp4"}
       TitlestringParser.parse(title_string).must_equal correct_response
     end
   end
@@ -32,7 +32,7 @@ describe TitlestringParser do
   describe "passing artist - title (note 1) ... (note n).extension" do
     it "should return artist, title, and the notes and also filetype" do
       title_string = "Koven - Make It There (feat. Folly Rae) (The Prototypes Remix).mp4"
-      correct_response = {artist: "Koven", title: "Make It There", notes: ["feat. Folly Rae", "The Prototypes Remix"], extension: ".mp4", filename: "koven_make-it-there_feat-folly-rae_the-prototypes-remix.mp3"}
+      correct_response = {artist: "Koven", title: "Make It There", notes: ["feat. Folly Rae", "The Prototypes Remix"], extension: ".mp4", filename: "koven_make-it-there_feat-folly-rae_the-prototypes-remix.mp4"}
       TitlestringParser.parse(title_string).must_equal correct_response
     end
   end
