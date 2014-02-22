@@ -8,6 +8,7 @@ require 'open-uri'
 module Downloader
   def self.get_title_string(id)
     url = "https://www.youtube.com/watch?v=" + id
+
     return ViddlRb.get_names(url).first
   end
 
@@ -19,5 +20,7 @@ module Downloader
         saved_file.write(read_file.read)
       end
     end
+
+    return SAVE_PATH + filename
   end
 end
