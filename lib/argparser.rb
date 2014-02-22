@@ -1,4 +1,8 @@
-module Parser
+# vid2mp3-rb -- Argument parser module
+# Cameron Carroll, 2013-2014
+# Purpose: Gets program commands and arguments out of ARGV and does some validation.
+
+module Argparser
   NOT_VIDEO_ERROR_MSG = "You specified an argument which wasn't a URL or video ID."
   NO_QUERY_ERROR_MSG = "URL didn't contain a query. Are you sure it's a youtube video link?"
   NO_VIDARG_ERROR_MSG = "URL didn't contain a 'v=' argument. Are you sure it's a youtube video link?"
