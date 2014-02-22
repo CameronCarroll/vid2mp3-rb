@@ -3,10 +3,21 @@
 # Purpose: Interfaces with viddl-rb to download videos or video information from youtube.
 
 require 'viddl-rb'
+require 'open-uri'
 
 module Downloader
   def self.get_title_string(id)
     url = "https://www.youtube.com/watch?v=" + id
     return ViddlRb.get_names(url).first
+  end
+
+  def self.download(id, filename)
+    url = "https://www.youtube.com/watch?v=" + id
+    dl_url = ViddlRb.get_urls(url).first
+    File.open(SAVE_PATH + filename, "wb") do |saved_file|
+      open(dl_url, "rb") do |read_file|
+        saved_file.write(read_file.read)
+      end
+    end
   end
 end
