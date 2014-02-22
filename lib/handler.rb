@@ -4,39 +4,33 @@
 
 require_relative 'downloader'
 require_relative 'titlestringparser'
+require_relative 'presenter'
 
 module Handler
   def self.handle_behavior(opts)
     if opts[:help]
-      print_argument_help
+      Presenter.print_argument_help
     elsif opts[:version]
-      print_version
+      Presenter.print_version
     elsif opts[:download]
       title_string = Downloader.get_title_string(opts[:download])
       info = TitlestringParser.parse(title_string)
-      puts info
+      puts Presenter.edit_loop(info)
+      # present info to user, allow them to edit
+      # actually download video
+      # convert video
+      # rename
+      # tag
     elsif opts[:add]
       title_string = Downloader.get_title_string(opts[:add])
       info = TitlestringParser.parse(title_string)
+      # add this info to internal queue
     elsif opts[:execute]
+      # open up internal queue
+      # for each item, present to user and allow to edit
+      # for each item, download and convert and rename and tag
     else
       raise RuntimeError, "Didn't get a behavior back from argument parser."
     end
-  end
-
-  def print_argument_help
-    puts <<-EOS
-Usage: 'vid2mp3.rb <download/add> <url>' or 'vid2mp3.rb execute'
-
-Commands:
-  (no command)        Synonym for DEFAULT_BEHAVIOR constant.
-  download "url"      Immediately download and attempt to tag.
-  add "url"           Attempt to tag but don't actually download yet.
-  execute             Present gathered tags/videos for review/edit and actually download/convert them.
-  EOS
-  end
-
-  def print_version
-    puts "vid2mp3.rb #{VERSION}"
   end
 end
