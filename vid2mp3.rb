@@ -12,9 +12,11 @@ require_relative 'lib/handler'
 
 VERSION = File.read('./VERSION')
 
+
 # User Configuration Section: -------------------------------------------------
 # No-Argument Behavior [:download or :add]
 DEFAULT_BEHAVIOR = :download
+SAVE_PATH = "/home/cameron/music/library/"
 # -----------------------------------------------------------------------------
 
 opts = ArgParser.parse_options
