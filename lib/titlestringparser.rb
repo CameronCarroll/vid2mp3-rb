@@ -23,13 +23,23 @@ module TitlestringParser
     artist.strip!
     title.strip!
     clean_notes = []
+
+    filename = "#{artist.downcase}_#{title.gsub(' ', '-').downcase}"
+
     if notes
       notes.each do |note|
-        clean_notes << note.strip.gsub("(", "").gsub(")", "")
+        clean_note = note.strip.gsub("(", "").gsub(")", "")
+        clean_notes << clean_note
+        filename << "_" + clean_note.gsub('.', '').downcase.gsub(' ', '-')
       end
-      return {artist: artist, title: title, extension: extension, notes: clean_notes}
+    end
+
+    filename << ".mp3"
+
+    if notes
+      return {artist: artist, title: title, extension: extension, filename: filename, notes: clean_notes}
     else
-      return {artist: artist, title: title, extension: extension}
+      return {artist: artist, title: title, extension: extension, filename: filename}
     end
   end
 end
