@@ -16,7 +16,7 @@ module Presenter
 
       print "\nIs this satisfactory? [Y or field name to edit]: "
       response = gets.chomp
-      if response =~ /y/i || response =~ /exit/i
+      if response =~ /y/i || response =~ /exit/i || response == ''
         satisfied = true
       else
         field = response.to_sym
