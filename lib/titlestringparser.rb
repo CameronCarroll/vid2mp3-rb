@@ -25,19 +25,21 @@ module TitlestringParser
     clean_notes = []
 
     filename = "#{artist.gsub(' ', '-').downcase}_#{title.gsub(' ', '-').downcase}"
+    full_title = "#{title}"
 
     if notes
       notes.each do |note|
         clean_note = note.strip.gsub("(", "").gsub(")", "")
         clean_notes << clean_note
         filename << "_" + clean_note.gsub('.', '').downcase.gsub(' ', '-')
+        full_title << " (#{clean_note})"
       end
     end
 
     filename << extension
 
     if notes
-      return {artist: artist, title: title, extension: extension, filename: filename, notes: clean_notes}
+      return {artist: artist, title: title, extension: extension, filename: filename, notes: clean_notes, full_title: full_title}
     else
       return {artist: artist, title: title, extension: extension, filename: filename}
     end
