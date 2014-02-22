@@ -5,6 +5,8 @@
 require_relative 'downloader'
 require_relative 'titlestringparser'
 require_relative 'presenter'
+require_relative 'converter'
+require_relative 'tagger'
 
 module Handler
   def self.handle_behavior(opts)
@@ -15,12 +17,12 @@ module Handler
     elsif opts[:download]
       title_string = Downloader.get_title_string(opts[:download])
       info = TitlestringParser.parse(title_string)
-      puts Presenter.edit_loop(info)
-      # present info to user, allow them to edit
-      # actually download video
-      # convert video
-      # rename
-      # tag
+      info = Presenter.edit_loop(info)
+      puts "\nDownloading video file, then handing off to ffmpeg for conversion. Just a few moments...\n"
+      saved_path = Downloader.download(opts[:download], info[:filename])
+      mp3_path = Converter.convert(saved_path)
+      File.delete saved_path if File.exists?(mp3_path)
+      Tagger.tag(mp3_path, info[:artist], info[:full_title] ? info[:full_title] : info[:title])
     elsif opts[:add]
       title_string = Downloader.get_title_string(opts[:add])
       info = TitlestringParser.parse(title_string)
