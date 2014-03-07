@@ -24,9 +24,17 @@ module ArgParser
       opts[:version] = true
       warn_extra_args if ARGV[1]
     when /download/i, /-download/i, /dl/i, /-dl/i, /-d$/i
-      opts[:download] = get_video_id_from ARGV.first
+      if ARGV.empty?
+        opts[:download] = get_id_from_user
+      else
+        opts[:download] = get_video_id_from ARGV.first
+      end
     when /add/i, /-add/i, /-a/
-      opts[:add] = get_video_id_from ARGV.first
+      if ARGV.empty?
+        opts[:add] = get_id_from_user
+      else
+        opts[:add] = get_video_id_from ARGV.first
+      end
     when /execute/i, /-execute/i, /-e$/i
       opts[:execute] = true
       warn_extra_args if ARGV[1]
