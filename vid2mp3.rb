@@ -10,7 +10,7 @@ require 'pry'
 require_relative 'lib/argparser'
 require_relative 'lib/handler'
 
-VERSION = File.read('./VERSION')
+VERSION = File.read(File.join(__dir__, 'VERSION'))
 
 
 # User Configuration Section: -------------------------------------------------
