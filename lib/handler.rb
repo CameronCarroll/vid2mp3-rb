@@ -7,6 +7,7 @@ require_relative 'titlestringparser'
 require_relative 'presenter'
 require_relative 'converter'
 require_relative 'tagger'
+require_relative 'library'
 
 module Handler
   def self.handle_behavior(opts)
@@ -18,11 +19,19 @@ module Handler
       title_string = Downloader.get_title_string(opts[:download])
       info = TitlestringParser.parse(title_string)
       info = Presenter.edit_loop(info)
+      song = {
+        remote_id: opts[:download],
+        filename: info[:filename],
+        artist: info[:artist],
+        title: info[:full_title] ? info[:full_title] : info[:title] 
+      }
+      raise RuntimeError, "Already found that song in library or queue." if Library.already_have? song
       puts "\nDownloading video file, then handing off to ffmpeg for conversion. Just a few moments...\n"
-      saved_path = Downloader.download(opts[:download], info[:filename])
-      mp3_path = Converter.convert(saved_path)
-      File.delete saved_path if File.exists?(mp3_path)
-      Tagger.tag(mp3_path, info[:artist], info[:full_title] ? info[:full_title] : info[:title])
+      saved_path = Downloader.download(song[:remote_id], song[:filename])
+      local_path = Converter.convert(saved_path)
+      File.delete saved_path if File.exists?(local_path)
+      Tagger.tag(local_path, song[:artist], song[:title])
+      Library.add(song)
     elsif opts[:add]
       title_string = Downloader.get_title_string(opts[:add])
       info = TitlestringParser.parse(title_string)

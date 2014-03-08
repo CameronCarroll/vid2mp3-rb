@@ -17,6 +17,8 @@ VERSION = File.read(File.join(__dir__, 'VERSION'))
 # No-Argument Behavior [:download or :add]
 DEFAULT_BEHAVIOR = :download
 SAVE_PATH = "/home/cameron/music/library/"
+LIBRARY_PATH = "/home/cameron/music/.library"
+QUEUE_PATH = "/home/cameron/music/.queue"
 # -----------------------------------------------------------------------------
 
 opts = ArgParser.parse_options
