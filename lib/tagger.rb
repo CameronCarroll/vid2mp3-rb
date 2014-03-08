@@ -12,4 +12,22 @@ module Tagger
     end
   end
 
+  def self.get_tags(filename)
+    TagLib::MPEG::File.open(filename) do |file|
+      if file.nil?
+        raise RuntimeError, "Couldn't open file #{file} while getting tags."
+      else
+        tag = file.id3v2_tag
+        artist = tag.artist
+        title = tag.title
+        song = {
+          remote_id: nil,
+          filename: filename,
+          artist: artist,
+          title: title
+        }
+        return song
+      end
+    end
+  end
 end
