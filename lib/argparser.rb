@@ -48,6 +48,13 @@ module ArgParser
         warn INVALID_DEFAULT_ERROR_MSG
         opts[:help] = true
       end
+    when /scan/i, /-scan/i, /-s$/i
+      if ARGV.first
+        opts[:scan] = ARGV.first
+      else
+        raise ArgumentError, "Must supply a directory argument."
+      end
+      
     when nil
       id = get_id_from_user
       case DEFAULT_BEHAVIOR

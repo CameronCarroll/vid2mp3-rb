@@ -40,6 +40,10 @@ module Handler
       # open up internal queue
       # for each item, present to user and allow to edit
       # for each item, download and convert and rename and tag
+    elsif opts[:scan]
+      dir = opts[:scan]
+      puts "Scanning #{dir} for files to add to library."
+      Library.scan(dir)
     else
       raise RuntimeError, "Didn't get a behavior back from argument parser."
     end
