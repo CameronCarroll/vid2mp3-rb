@@ -28,3 +28,7 @@ Usage:
 
   vid2mp3.rb scan {directory}
 
+Contributors:
+--------------
+
+* gbaptista
