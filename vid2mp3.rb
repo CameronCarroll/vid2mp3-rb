@@ -5,7 +5,6 @@
 
 require 'cgi'
 require 'uri'
-require 'pry'
 
 require_relative 'lib/argparser'
 require_relative 'lib/handler'

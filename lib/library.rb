@@ -6,7 +6,6 @@
 require 'yaml'
 require 'fileutils'
 require_relative 'tagger'
-require 'pry'
 
 module Library
   @@library = nil
