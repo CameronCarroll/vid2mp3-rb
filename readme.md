@@ -10,7 +10,9 @@ Youtube Title Requirements:
 ---------------------------
 
 All the logic to parse the youtube title into song info depends on a specific format:
-[Artist] - [Title] ([Optional Note 1]) ([Optional Note N])
+
+[Artist] - [Title]  ([Optional Note 1]) ([Optional Note N])
+
 
 Usage: 
 -------
@@ -23,11 +25,13 @@ Usage:
 
 * Add to batch download list (attempts to parse and tag video name into title/artist but doesn't ask the user for review.)
 
+  (NOT IMPLEMENTED YET)
   vid2mp3.rb add --- (Proceeds to query user for video url or id)
   vid2mp3.rb add {url}
 
 * Execute batch download (and presents title/artist for each and an opportunity to edit them.)
 
+  (NOT IMPLEMENTED YET)
   vid2mp3.rb execute
 
 * Scan a directory for mp3 files to add to the music library
