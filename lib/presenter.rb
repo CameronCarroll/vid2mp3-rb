@@ -35,6 +35,26 @@ module Presenter
     return info
   end
 
+  def self.parse_manually
+    puts "Couldn't get a title string for that video. Please add track info manually..."
+    print "Artist: "
+    artist = gets.chomp
+    print "\nTitle: "
+    title = gets.chomp
+    print "\nFilename: "
+    filename = gets.chomp
+
+    track = {
+      artist: artist,
+      title: title,
+      filename: filename
+    }
+
+    track = edit_loop(track)
+
+    return track
+  end
+
   def self.print_argument_help
     puts <<-EOS
 Usage: 'vid2mp3.rb <download/add> <url>' or 'vid2mp3.rb execute'

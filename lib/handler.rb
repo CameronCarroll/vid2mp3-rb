@@ -17,8 +17,14 @@ module Handler
       Presenter.print_version
     elsif opts[:download]
       title_string = Downloader.get_title_string(opts[:download])
-      info = TitlestringParser.parse(title_string)
-      info = Presenter.edit_loop(info)
+
+      if title_string.count('-') > 0
+        info = TitlestringParser.parse(title_string)
+        info = Presenter.edit_loop(info)
+      else
+        info = Presenter.parse_manually
+      end
+      
       song = {
         remote_id: opts[:download],
         filename: info[:filename],

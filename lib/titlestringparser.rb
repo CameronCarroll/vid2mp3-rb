@@ -3,9 +3,10 @@
 # Purpose: Accepts a youtube video title string and attempts to extract the
 #          artist, title and any notes from it.
 # Koven - Make It There (feat. Folly Rae) (The Prototypes Remix).mp4
+
 module TitlestringParser
   def self.parse(title_string)
-    artist, remainder = title_string.split('-')
+    artist, remainder = title_string.split(' - ')
     if remainder.include?(")") # then we know we have notes
       split = remainder.split("(")
       title = split.shift

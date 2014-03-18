@@ -1,10 +1,16 @@
 vid2mp3.rb
 ==========
-(Version 1.1.0 -- March 2014)
+(Version 1.2.0 -- March 2014)
 
 Download, convert and tag mp3 files from youtube videos containing them.
 Also keeps a "music library" listing all of the files which have been downloaded using this tool,
 so that that listing can be queried and duplicate downloads avoided.
+
+Youtube Title Requirements:
+---------------------------
+
+All the logic to parse the youtube title into song info depends on a specific format:
+[Artist] - [Title] ([Optional Note 1]) ([Optional Note N])
 
 Usage: 
 -------
