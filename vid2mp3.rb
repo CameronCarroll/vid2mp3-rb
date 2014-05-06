@@ -20,9 +20,9 @@ VERSION = File.read(File.join(__dir__, 'VERSION'))
 # [:download or :add]
 DEFAULT_BEHAVIOR = :download
 # Paths for downloads and working files.
-SAVE_PATH = "/home/cameron/music/library/"
-LIBRARY_PATH = "/home/cameron/music/.library"
-QUEUE_PATH = "/home/cameron/music/.queue"
+SAVE_PATH = "#{ENV['HOME']}/library/"
+LIBRARY_PATH = "#{ENV['HOME']}/music/.library"
+QUEUE_PATH = "#{ENV['HOME']}/music/.queue"
 # -----------------------------------------------------------------------------
 
 opts = ArgParser.parse_options
