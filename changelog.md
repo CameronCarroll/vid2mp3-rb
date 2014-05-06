@@ -1,3 +1,11 @@
+1.2.1, 5/5/14
+--------------
+* Changed config paths to use home variable instead of my own name so that you don't have to edit them to start using the program.
+* Cleaned up user config comments a little bit.
+* Added a method to ensure all working directories and their parents exist, so you don't have to create them to use the program.
+* Added require statements allowing use of gem bundler.
+* Updated README to reflect dependencies and added installation directions.
+
 1.2.0, 3/18/14
 --------------
 * Changed split method (youtube title string split into artist and title) to include spaces, which allows for names that have dashes in them.
