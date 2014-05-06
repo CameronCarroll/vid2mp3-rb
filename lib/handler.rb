@@ -9,8 +9,11 @@ require_relative 'converter'
 require_relative 'tagger'
 require_relative 'library'
 
+require 'fileutils'
+
 module Handler
   def self.handle_behavior(opts)
+    ensure_directories_exist
     if opts[:help]
       Presenter.print_argument_help
     elsif opts[:version]
@@ -52,6 +55,16 @@ module Handler
       Library.scan(dir)
     else
       raise RuntimeError, "Didn't get a behavior back from argument parser."
+    end
+  end
+
+  def self.ensure_directories_exist
+    [SAVE_PATH, LIBRARY_PATH, QUEUE_PATH].each do |path|
+      if File.directory? path
+        FileUtils.mkdir_p(path)
+      else
+        FileUtils.mkdir_p(File.dirname(path))
+      end
     end
   end
 end

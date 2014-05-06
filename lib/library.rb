@@ -93,7 +93,6 @@ module Library
   end
 
   def self.save_hash_to_yaml(file, hash)
-    FileUtils.mkdir_p(File.dirname(file))
     File.new(file, "w") unless File.exist? file
     File.open(file, "w") do |yaml_file|
       yaml_file.write(hash.to_yaml)
