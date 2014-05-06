@@ -2,16 +2,24 @@ vid2mp3.rb
 ==========
 (Version 1.2.0 -- March 2014)
 
-Download, convert and tag mp3 files from youtube videos containing them.
-Also keeps a "music library" listing all of the files which have been downloaded using this tool,
-so that that listing can be queried and duplicate downloads avoided.
+* Convert Youtube videos into tagged MP3 files!
+* Keeps a list of files in music library to avoid duplicates.
+
+Requirements:
+--------------
+
+* Ruby (tested with 2.1)
+* ffmpeg (system)
+* taglib (system)
+* viddl-rb (rubygem)
+* taglib-rb (rubygem)
 
 Youtube Title Requirements:
 ---------------------------
 
 All the logic to parse the youtube title into song info depends on a specific format:
 
-[Artist] - [Title]  ([Optional Note 1]) ([Optional Note N])
+[Artist] - [Title]  ([Optional Note 1]) ... ([Optional Note N])
 
 
 Usage: 
@@ -37,6 +45,10 @@ Usage:
 * Scan a directory for mp3 files to add to the music library
 
   vid2mp3.rb scan {directory}
+
+Future Functionality:
+----------------------
+I wanted to have a batch download function where you can quickly add a number of videos at once and then review them all at the same time and make changes accordingly. After you're satisfied, you can actually execute all the downloads and conversions and everything.
 
 Contributors:
 --------------
