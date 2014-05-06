@@ -3,6 +3,10 @@
 # vid2mp3.rb -- Cameron Carroll, 2014
 # Purpose: Download videos from Youtube, strips off the audio into an mp3 and attempts to tag it.
 
+require 'rubygems'
+require 'bundler/setup'
+
+
 require 'cgi'
 require 'uri'
 
