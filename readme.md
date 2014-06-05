@@ -1,6 +1,6 @@
 vid2mp3.rb
 ==========
-(Version 1.2.1 -- May 2014)
+(Version 1.2.2 -- June 2014)
 
 * Convert Youtube videos into tagged MP3 files!
 * Keeps a list of files in music library to avoid duplicates.
@@ -9,7 +9,7 @@ Requirements:
 --------------
 
 * Ruby (tested with 2.1)
-* RubyGems with Bundler installed. (optional)
+* RubyGems with Bundler installed.
 * ffmpeg (system)
 * taglib (system)
 * viddl-rb (rubygem)
@@ -27,7 +27,9 @@ Installation:
 
 1. Install ffmpeg and taglib on your system. 
 2. Download and extract tarball
-3. Run 'bundle' in the downloaded folder to install gem dependencies. (Or do it manually if you don't want to use bundler)
+3. Run 'bundle' in the downloaded folder to install gem dependencies.
+
+Please note that you have to install gems to the system and not to vendor/bundle unless you want to CD to the app directory every time to use it.
 4. Use in place or symlink your favorite bin PATH.
 
 Usage: 
