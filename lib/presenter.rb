@@ -16,7 +16,7 @@ module Presenter
       # Filenames can't have special characters in them. Apostrophes, periods and ampersands occur all the time.
       # We'll just remove apostrophes/periods and change ampersands to 'n'.
       # We also need to change spaces to dashes.
-      
+
       info[:filename] = "#{cleanup info[:artist]}_#{cleanup info[:title]}"
       info[:full_title] = "#{info[:title]}"
 
@@ -32,7 +32,6 @@ module Presenter
           info[:full_title] << " (#{note})"
         end
       end
-
       info[:filename] << info[:extension]
       editable_info = info.reject {|k| k == :notes || k == :extension || k == :filename}
       editable_info.each_with_index do |item, ii|
@@ -68,19 +67,20 @@ module Presenter
     return new_info
   end
 
-  def self.parse_manually
+  def self.parse_manually(extension)
     puts "Couldn't get a title string for that video. Please add track info manually..."
     print "Artist: "
     artist = gets.chomp
     print "\nTitle: "
     title = gets.chomp
-    print "\nFilename: "
+    print "\nFilename (without extension): "
     filename = gets.chomp
 
     track = {
       artist: artist,
       title: title,
-      filename: filename
+      filename: filename,
+      extension: extension
     }
 
     track = edit_loop(track)

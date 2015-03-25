@@ -22,7 +22,11 @@ module TitlestringParser
       extension = "." + extension
     end
     info = {:artist => artist, :title => title, :notes => notes, :extension => extension}
-    
+
     return info
+  end
+
+  def self.get_extension(title_string)
+    extension = '.' + title_string.split('.')[-1]
   end
 end
