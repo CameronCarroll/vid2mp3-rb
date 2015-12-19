@@ -14,7 +14,7 @@ All the logic to parse the youtube title into song info depends on a specific fo
 [Artist] - [Title]  ([Optional Note 1]) ([Optional Note N])
 
 
-Usage: 
+Usage:
 -------
 
 * Download and convert immediately (also tries to parse the video name into title/artist and tag the mp3, and provides an opportunity to correct them):
@@ -42,3 +42,8 @@ Contributors:
 --------------
 
 * gbaptista
+
+Design Notes:
+--------------
+
+* Wow I went really, really crazy on the abstraction. It seems like the main vid2mp3.rb file should have a little more responsibility, probably that of the 'handler' because that isn't really a thing.
