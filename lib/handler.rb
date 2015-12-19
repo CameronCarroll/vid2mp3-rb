@@ -9,8 +9,11 @@ require_relative 'converter'
 require_relative 'tagger'
 require_relative 'library'
 
+require 'fileutils'
+
 module Handler
   def self.handle_behavior(opts)
+    ensure_directories_exist
     if opts[:help]
       Presenter.print_argument_help
     elsif opts[:version]
@@ -22,14 +25,15 @@ module Handler
         info = TitlestringParser.parse(title_string)
         info = Presenter.edit_loop(info)
       else
-        info = Presenter.parse_manually
+        extension = TitlestringParser.get_extension(title_string)
+        info = Presenter.parse_manually(extension)
       end
-      
+
       song = {
         remote_id: opts[:download],
         filename: info[:filename],
         artist: info[:artist],
-        title: info[:full_title] ? info[:full_title] : info[:title] 
+        title: info[:full_title] ? info[:full_title] : info[:title]
       }
       raise RuntimeError, "Already found that song in library or queue." if Library.already_have? song
       puts "\nDownloading video file, then handing off to ffmpeg for conversion. Just a few moments...\n"
@@ -52,6 +56,16 @@ module Handler
       Library.scan(dir)
     else
       raise RuntimeError, "Didn't get a behavior back from argument parser."
+    end
+  end
+
+  def self.ensure_directories_exist
+    [SAVE_PATH, LIBRARY_PATH, QUEUE_PATH].each do |path|
+      if File.directory? path
+        FileUtils.mkdir_p(path)
+      else
+        FileUtils.mkdir_p(File.dirname(path))
+      end
     end
   end
 end
